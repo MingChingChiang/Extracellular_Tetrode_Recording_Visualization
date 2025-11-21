@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetrode Recording Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Extracellular Tetrode Recording</h1>
+            <p class="subtitle">Interactive Simulation of In Vivo Electrophysiology</p>
+        </header>
+
+        <main>
+            <div class="canvas-container" id="spatial-view-container">
+                <div class="panel-header">
+                    <h2>Spatial View</h2>
+                    <span class="badge">Live Simulation</span>
+                </div>
+                <canvas id="spatial-canvas"></canvas>
+                <div class="overlay-controls">
+                    <!-- Overlay info or quick toggles could go here -->
+                </div>
+            </div>
+
+            <aside class="controls-panel">
+                <div class="control-group">
+                    <button id="play-pause-btn" class="primary-btn">
+                        <span class="icon">⏸</span> Pause Simulation
+                    </button>
+                </div>
+
+                <div class="control-group">
+                    <h3>Tetrode Position</h3>
+                    <label for="depth-slider">Depth (μm)</label>
+                    <input type="range" id="depth-slider" min="-500" max="500" value="0" step="10">
+                    <div class="value-display"><span id="depth-value">0</span> μm</div>
+
+                    <label for="offset-slider">Lateral Offset (μm)</label>
+                    <input type="range" id="offset-slider" min="10" max="200" value="50" step="5">
+                    <div class="value-display"><span id="offset-value">50</span> μm</div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Signal Quality</h3>
+                    <label for="noise-slider">Noise Level (μV)</label>
+                    <input type="range" id="noise-slider" min="0" max="100" value="50">
+                    <div class="value-display"><span id="noise-value">50</span> μV</div>
+
+                    <label for="filter-select">Bandpass Filter</label>
+                    <select id="filter-select"
+                        style="width: 100%; padding: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;">
+                        <option value="raw">Raw Signal (Wideband)</option>
+                        <option value="lfp">LFP (< 300 Hz)</option>
+                        <option value="spike">Spikes (300 - 6000 Hz)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <h3>Reference Electrode</h3>
+                    <label for="ref-slider">Reference Distance (mm)</label>
+                    <input type="range" id="ref-slider" min="0.1" max="10" value="5" step="0.1">
+                    <div class="value-display"><span id="ref-value">5.0</span> mm</div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="show-field" checked>
+                        <label for="show-field">Show Electric Field</label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Neuron Activity</h3>
+                    <label for="freq-slider">Firing Rate (Hz)</label>
+                    <input type="range" id="freq-slider" min="0.1" max="20" value="5" step="0.1">
+                    <div class="value-display"><span id="freq-value">5.0</span> Hz</div>
+                </div>
+            </aside>
+        </main>
+
+        <section class="analysis-row">
+            <div class="waveform-section">
+                <div class="panel-header">
+                    <div class="header-left">
+                        <h2>LFP / Spike Waveforms</h2>
+                        <div class="range-control">
+                            <label>Range: ±</label>
+                            <input type="number" id="waveform-range" value="2000" min="100" max="15000" step="100">
+                            <span class="unit">μV</span>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <span class="trace-color ch1">Ch1</span>
+                        <span class="trace-color ch2">Ch2</span>
+                        <span class="trace-color ch3">Ch3</span>
+                        <span class="trace-color ch4">Ch4</span>
+                        <span class="trace-color mean">Mean</span>
+                    </div>
+                </div>
+                <canvas id="waveform-canvas"></canvas>
+            </div>
+
+            <div class="scatter-section">
+                <div class="panel-header">
+                    <div class="header-left">
+                        <h2>Spike Sorting (Peak Amplitudes)</h2>
+                        <div class="range-control">
+                            <label>Range: 0 - </label>
+                            <input type="number" id="scatter-range" value="2000" min="100" max="5000" step="100">
+                            <span class="unit">μV</span>
+                        </div>
+                        <button id="refresh-clusters-btn" class="control-btn"
+                            style="margin-left: 15px; padding: 4px 12px; background: #673ab7; border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 0.9rem;">
+                            <span class="icon">↻</span> Refresh
+                        </button>
+                    </div>
+                </div>
+                <canvas id="scatter-canvas"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Chiang"
+  given-names: "Ming-Ching"
+title: "Extracellular Tetrode Recording Visualization"
+version: 1.0.0
+date-released: 2025-11-21
+url: "https://github.com/MingChingChiang/Extracellular_Tetrode_Recording_Visualization"

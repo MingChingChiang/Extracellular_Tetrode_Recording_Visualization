@@ -1,0 +1,272 @@
+:root {
+    --bg-color: #0f1115;
+    --panel-bg: rgba(30, 34, 45, 0.7);
+    --accent-color: #64ffda;
+    --text-primary: #e6f1ff;
+    --text-secondary: #8892b0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --ch1-color: #ff5252;
+    --ch2-color: #448aff;
+    --ch3-color: #69f0ae;
+    --ch4-color: #ffd740;
+    --font-family: 'Inter', sans-serif;
+
+    /* Dynamic Font Size: Scales with viewport */
+    /* ~20px on 1080p screen */
+    font-size: 2vmin;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    /* Restore scrolling */
+    display: block;
+    padding: 20px;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Left 1/2, Right 1/2 */
+    grid-template-rows: auto 1fr;
+    /* Header, Content */
+
+    /* Width-First Responsive Layout */
+    /* 1. Always fill the available width */
+    width: 100%;
+
+    /* 2. Maintain 16:9 Aspect Ratio based on width */
+    /* Height will grow automatically. */
+    aspect-ratio: 16 / 9;
+
+    /* 3. No max constraints. If it gets huge, it gets huge. */
+
+    padding: 20px;
+    gap: 20px;
+    margin: 0 auto;
+    /* Center horizontally */
+}
+
+h1 {
+    font-size: 1.5rem;
+    /* ~36px min */
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    /* 24px min */
+    font-weight: 300;
+}
+
+header {
+    grid-column: 1 / -1;
+    /* Span full width */
+    flex-shrink: 0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column */
+    grid-template-rows: 1fr 1fr;
+    /* Spatial takes 1/2, Controls take 1/2 */
+    gap: 20px;
+    min-height: 0;
+    height: 100%;
+    /* Fill the grid cell */
+}
+
+/* Analysis Row (Waveform + Scatter) */
+.analysis-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column */
+    grid-template-rows: 1fr 1fr;
+    /* Split vertically */
+    gap: 20px;
+    min-height: 0;
+    height: 100%;
+    /* Fill the grid cell */
+}
+
+.waveform-section,
+.scatter-section {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+/* Primary Button */
+.primary-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-color);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    gap: 15px;
+}
+
+.trace-color {
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.trace-color::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.ch1 {
+    color: var(--ch1-color);
+}
+
+.ch1::before {
+    background: var(--ch1-color);
+}
+
+.ch2 {
+    color: var(--ch2-color);
+}
+
+.ch2::before {
+    background: var(--ch2-color);
+}
+
+.ch3 {
+    color: var(--ch3-color);
+}
+
+.ch3::before {
+    background: var(--ch3-color);
+}
+
+.ch4 {
+    color: var(--ch4-color);
+}
+
+.ch4::before {
+    background: var(--ch4-color);
+}
+
+.mean {
+    color: #ffffff;
+}
+
+.mean::before {
+    background: #ffffff;
+}
+
+.range-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    /* 24px min */
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.range-control input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 80px;
+    /* Wider for larger text */
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 1rem;
+    /* 24px min */
+}
+
+h2 {
+    font-size: 1.2rem;
+    /* ~29px min */
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--accent-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.control-group h3 {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    /* 24px min */
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.value-display {
+    text-align: right;
+    font-size: 1rem;
+    /* 24px min */
+    color: var(--text-primary);
+    font-family: monospace;
+    margin-bottom: 15px;
+}
