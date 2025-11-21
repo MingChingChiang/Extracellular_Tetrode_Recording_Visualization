@@ -19,6 +19,13 @@ Open your terminal (Terminal or VS Code Terminal) in this project folder.
 
 Run these commands one by one:
 
+### 0. Configure Identity (First Time Only)
+Tell Git who you are (so your name appears correctly on GitHub):
+```bash
+git config --global user.name "Ming-Ching Chiang"
+git config --global user.email "YOUR_EMAIL@example.com"
+```
+
 ### 1. Initialize Git
 ```bash
 git init
@@ -84,6 +91,6 @@ If you modify files (like adding the image just now), run these 3 commands to up
 ```bash
 git add .
 git commit -m "Update README with screenshot"
-git push
+git push -u origin main
 ```
-*(You don't need `-u origin main` or `-f` anymore, just `git push` is enough!)*
+*(Using `-u origin main` ensures it works even if the connection wasn't saved previously.)*

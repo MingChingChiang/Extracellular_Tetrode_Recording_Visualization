@@ -13,7 +13,21 @@ An interactive simulation of in vivo electrophysiology, visualizing how a tetrod
 > [!NOTE]
 > **Resizing the Window**: If you resize the browser window and the layout looks distorted, simply **refresh the page** to restore the correct proportions.
 
-## How to Run Locally
+## 📥 Installation (Download)
+You can download this project to your computer in two ways:
+
+### Option A: Git Clone (Recommended for Developers)
+```bash
+git clone https://github.com/MingChingChiang/Extracellular_Tetrode_Recording_Visualization.git
+cd Extracellular_Tetrode_Recording_Visualization
+```
+
+### Option B: Download ZIP (Easiest)
+1.  Click the green **<> Code** button at the top of this page.
+2.  Select **Download ZIP**.
+3.  Unzip the file to a folder.
+
+## 🚀 How to Run Locally
 Because this project uses modern JavaScript Modules (`import`/`export`), **you cannot simply double-click `index.html` to open it**. You must run a local web server.
 
 ### Option 1: VS Code (Recommended)
