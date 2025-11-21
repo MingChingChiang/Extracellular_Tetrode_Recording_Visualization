@@ -38,7 +38,7 @@ git commit -m "Initial commit: Complete Tetrode Visualization (Phase 23)"
 *Replace `YOUR_USERNAME` and `YOUR_REPO_NAME` with your actual details.*
 *(You can copy this exact line from the page GitHub showed you after creating the repo)*
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git remote add origin https://github.com/MingChingChiang/Extracellular_Tetrode_Recording_Visualization.git
 ```
 
 ### 5. Push to GitHub
@@ -47,6 +47,43 @@ git branch -M main
 git push -u origin main
 ```
 
+## ⚠️ Troubleshooting: "Authentication Failed"
+If you see an error saying **"Password authentication is not supported"**, it means you cannot use your GitHub account password. You must use a **Personal Access Token (Token)** instead.
+
+### How to get a Token:
+1.  Go to **GitHub Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)**.
+    *   Or click here: [Generate Token](https://github.com/settings/tokens/new)
+2.  **Note**: "Tetrode Push" (or anything).
+3.  **Expiration**: Set to "No expiration" (for simplicity) or 30 days.
+4.  **Select scopes**: Check the box **`repo`** (Full control of private repositories).
+5.  Click **Generate token**.
+6.  **COPY THE TOKEN** (It starts with `ghp_...`). You won't see it again.
+
+### How to use it:
+*   When Terminal asks for `Password for 'https://...@github.com':`
+*   **Paste the Token** you just copied.
+*   *(Note: You won't see any characters appearing on screen while pasting. That is normal security. Just paste and press Enter.)*
+
+## ⚠️ Troubleshooting: "Updates were rejected"
+If you see an error saying **"Updates were rejected because the remote contains work that you do not have locally"**, it usually means you accidentally checked "Initialize with README" or "Add a License" when creating the repo on GitHub.
+
+Since you want your **local computer's code** to be the correct version, you can **Force Push** to overwrite the empty GitHub repo:
+
+```bash
+git push -f origin main
+```
+*(Only do this for the very first push!)*
+
 ---
 ## Done!
 Refresh your GitHub repository page, and you should see all your files, including the `README.md` and `CHANGELOG.md`.
+
+## 🔄 How to Update (After making changes)
+If you modify files (like adding the image just now), run these 3 commands to update GitHub:
+
+```bash
+git add .
+git commit -m "Update README with screenshot"
+git push
+```
+*(You don't need `-u origin main` or `-f` anymore, just `git push` is enough!)*

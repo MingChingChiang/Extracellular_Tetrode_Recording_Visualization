@@ -1,5 +1,7 @@
 # Extracellular Tetrode Recording Visualization
 
+![App Screenshot](APP_View.png)
+
 An interactive simulation of in vivo electrophysiology, visualizing how a tetrode records neural activity from the CA1 layer of the hippocampus.
 
 ## Features
